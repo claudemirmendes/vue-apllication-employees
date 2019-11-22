@@ -1,17 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="small-container">
+    <employee-form> </employee-form>
+    <h1>Employees</h1>
+    <employee-table  :employees="employees"> </employee-table>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import EmployeeTable from '@/components/EmployeeTable.vue'
+import EmployeeForm from '@/components/EmployeeForm.vue'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    EmployeeTable,
+    EmployeeForm
+  },
+  data() {
+    return{
+      employees:[
+        {
+        id:1,
+        name: 'Richard',
+        email: 'richard@geq.com.br',
+        },
+        {
+          id:2,
+          name: 'nome de teste',
+          email: 'emailteste@geq.com.br'
+        },
+        {
+          id : 3,
+          name : 'Dinesh',
+          email: 'dinesh@geq.com.br'  
+        }
+      ]
+    }
   }
 }
 </script>
