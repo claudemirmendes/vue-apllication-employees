@@ -46,7 +46,7 @@ export default {
 
       this.employees = [...this.employees, newEmployee]
     }
-  }
+  },
 }
 </script>
 
