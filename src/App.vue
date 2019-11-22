@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="small-container">
-    <employee-form> </employee-form>
+    <employee-form @add:employee="addEmployee"> </employee-form>
     <h1>Employees</h1>
     <employee-table  :employees="employees"> </employee-table>
   </div>
@@ -34,6 +34,17 @@ export default {
           email: 'dinesh@geq.com.br'  
         }
       ]
+    }
+  },
+  methods: {
+    addEmployee(employee) {
+      const  lastId = this.employees.length > 0 
+      ? this.employees[this.employees.length - 1 ].id
+      : 0;
+      const id  = lastId + 1;
+      const newEmployee = {...employee, id};
+
+      this.employees = [...this.employees, newEmployee]
     }
   }
 }
