@@ -9,8 +9,7 @@
                  @keypress="clearStatus"
                  type="text"/>
           <label>Employee Email </label>
-          <input v-model="employee.email" 
-                 ref="first"
+          <input v-model="employee.email"
                  type="text"
                  :class="{'has-error': submitting && invalidEmail}"
                  @focus="clearStatus"
@@ -49,6 +48,7 @@ export default {
               return
           }
           this.$emit('add:employee', this.employee)
+          this.$refs.first.focus()
           this.employee = {
               name: '',
               email: ''

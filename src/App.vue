@@ -1,8 +1,11 @@
 <template>
   <div id="app" class="small-container">
-    <employee-form @add:employee="addEmployee"> </employee-form>
+    <employee-form @add:employee="addEmployee"/>
     <h1>Employees</h1>
-    <employee-table  :employees="employees"> </employee-table>
+    <employee-table  
+     :employees="employees"
+     @delete:employee="deleteEmployee" 
+     @edit:employee="editEmployee"/>
   </div>
 </template>
 
@@ -17,23 +20,7 @@ export default {
   },
   data() {
     return{
-      employees:[
-        {
-        id:1,
-        name: 'Richard',
-        email: 'richard@geq.com.br',
-        },
-        {
-          id:2,
-          name: 'nome de teste',
-          email: 'emailteste@geq.com.br'
-        },
-        {
-          id : 3,
-          name : 'Dinesh',
-          email: 'dinesh@geq.com.br'  
-        }
-      ]
+      employees:[],
     }
   },
   methods: {
@@ -45,6 +32,16 @@ export default {
       const newEmployee = {...employee, id};
 
       this.employees = [...this.employees, newEmployee]
+    },
+    deleteEmployee(id){
+      this.employees = this.employees.filter(
+        employee => employee.id !== id
+      )
+    },
+    editEmployee(id, updateEmployee) {
+      this.employees = this.employees.map(employee =>
+        employee.id === id ? updateEmployee : employee
+      )
     }
   },
 }
